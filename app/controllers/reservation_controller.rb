@@ -4,8 +4,7 @@ class ReservationController < ApplicationController
   before_action :authorize_remote, only: [:import_from_remote]
 
   def import_from_remote
-    reservations = ReservationsDTO.new(reservation_params).get_data.map { |d| Reservation.new(d) }
-    Reservation.import(reservations)
+    Hostaway.new().import_reservation_from_resp(reservation_params)
 
     render json: {}
   end

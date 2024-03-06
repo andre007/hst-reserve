@@ -5,7 +5,7 @@ class ReservationDTO
     @response = response
   end
 
-  def get_value
+  def get_data
     {
       check_in: @response['checkInTime'],
       check_out: @response['checkOutTime'],
@@ -14,5 +14,9 @@ class ReservationDTO
       status: @response['status'],
       listing_id: @response['listingMapId']
     }
+  end
+
+  def get_model
+    Reservation.new(get_data)
   end
 end
