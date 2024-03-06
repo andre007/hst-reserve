@@ -22,6 +22,10 @@ class Hostaway
     import_reservation_from_resp(plain_response)
   end
 
+  def import_reservation_last_two_weeks
+    import_reservation_list({ arrivalStart: 2.weeks.ago.to_s })
+  end
+
   def import_reservation_from_resp(plain_response)
     reservations = ReservationsDTO.new(plain_response).get_models
     Reservation.import(reservations)
